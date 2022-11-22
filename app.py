@@ -13,11 +13,10 @@ def hello():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-	lr = joblib.load("GDM_model.pkl")
+	lr = joblib.load("model.pkl")
 	if lr:
 		try:
 			json = request.get_json()	 
-			model_columns = joblib.load("model_cols.pkl")
 			temp=list(json[0].values())
 			vals=np.asarray(temp)
 			input_data_reshaped = vals.reshape(1,-1)
